@@ -3,7 +3,7 @@
 An analysis of Cambodia's economic growth from **1990–2024** using machine learning regression models to identify key drivers and predictors of GDP growth.
 
 **Institute of Technology of Cambodia** — Department of Applied Mathematics and Statistics  
-**Course:** AMSI32_MIP - Mini Project | Academic Year 2025-2026  
+**Course:** AMSI3- Mini Project | Academic Year 2025-2026  
 **SDG Alignment:** SDG 8 — Decent Work and Economic Growth (Target 8.1, 8.2)
 
 ## Team — Group 1
