@@ -331,7 +331,6 @@ def page_eda(df: pd.DataFrame) -> None:
             x="exports_pct",
             y="gdp_growth",
             hover_data=["year"],
-            trendline="ols",
             title="Exports vs GDP Growth",
             labels={
                 "exports_pct": "Exports (% of GDP)",
@@ -339,6 +338,22 @@ def page_eda(df: pd.DataFrame) -> None:
             },
             color_discrete_sequence=["#7c3aed"],
         )
+        x_vals = filtered["exports_pct"].to_numpy()
+        y_vals = filtered["gdp_growth"].to_numpy()
+        valid = ~(np.isnan(x_vals) | np.isnan(y_vals))
+        if valid.sum() >= 2:
+            slope, intercept = np.polyfit(x_vals[valid], y_vals[valid], 1)
+            x_line = np.linspace(x_vals[valid].min(), x_vals[valid].max(), 100)
+            y_line = slope * x_line + intercept
+            fig_scatter.add_trace(
+                go.Scatter(
+                    x=x_line,
+                    y=y_line,
+                    mode="lines",
+                    name="Trend",
+                    line=dict(dash="dash", color="gray"),
+                )
+            )
         fig_scatter.update_layout(height=360)
         st.plotly_chart(fig_scatter, use_container_width=True)
 
